@@ -1,0 +1,78 @@
+//===============
+// Global Config
+//===============
+
+/**
+ *  Define scss variables here.
+ *
+ *  Available options for Bootstrap:
+ *  http://getbootstrap.com/customize/
+ *
+ */
+
+
+//====================
+// Descriptive Colors
+//====================
+
+$jewel          : #0C6B35;
+$outer-space    : #2B3D34;
+$pomegranate    : #f04124;
+$tia-maria      : #da3c0e;
+$oregon         : #993300;
+$scooter        : #31b0d5;
+$steel-blue     : #4887a9;
+$orient         : #036489;
+$teal-blue      : #04435B;
+$bright-sun     : #FEE342;
+$gold-tips      : #CEB312;
+$pirate-gold    : #b67102;
+$snow-drift     : #F8FAF9;
+
+/* Base Colors */
+$black          : #000000;
+$white          : $snow-drift;
+$grey           : #99a39e;
+$light-grey     : #d2d3d2;
+$dark-grey      : #333333;
+
+/* Custom Theme Colors */
+$color-accent   : $oregon;
+
+/* Shadows */
+$text-shadow    : rgba(0,0,0,0.4);
+$box-shadow     : rgba(0,0,0,0.2);
+
+
+//=============
+// Font Stacks
+//=============
+
+/* Droid Sans */
+$font-family-droid-sans     : 'Droid Sans', sans-serif;
+$font-url--droid-sans       : 'https://fonts.googleapis.com/css?family=Droid+Sans:400,700';
+@import url($font-url--droid-sans);
+
+/* Oswald */
+$font-family-oswald         : 'Oswald', sans-serif;
+$font-url--oswald           : 'https://fonts.googleapis.com/css?family=Oswald:100,400,700';
+@import url($font-url--oswald);
+
+/* San Serif fallback */
+$font-family-sans-serif     : "Helvetica Neue", Helvetica, sans-serif;
+
+/* Main Font Families */
+$font-family--primary       : $font-family-droid-sans;
+$font-family--secondary     : $font-family-oswald;
+
+/* Text Sizes */
+$base--font-size  : 14px;
+$base--line       : 20px;
+
+/* Text Colors */
+$text-primary     : $black;
+$text-secondary   : $white;
+
+/* Misc */
+$header-h-sm      : 51px;
+$header-h-md      : 63px;

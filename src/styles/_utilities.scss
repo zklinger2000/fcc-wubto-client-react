@@ -1,0 +1,62 @@
+//===========
+// Utilities
+//===========
+
+@import 'variables';
+
+// Calculate em values
+
+@function em($target, $context: $base--font-size) {
+  @return ($target / $context) * 1em;
+}
+
+// Placeholder selectors
+
+%no-margin {
+  margin: 0;
+}
+
+%no-padding {
+  padding: 0;
+}
+
+%page-setup {
+  height: 100%;
+  padding-bottom: 200px;
+  @media screen and (min-width: 768px) {
+    padding-bottom: 130px;
+  }
+}
+
+// Mixins
+
+@mixin flexbox($direction: column, $wrap: nowrap, $justify: center) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  justify-content: $justify;
+}
+
+@mixin media-break($size) {
+  $small  : 520px;
+  $medium : 768px;
+  $large  : 1024px;
+
+  @if $size == small {
+    @media screen and (min-width: $small) { @content; }
+  }
+  @else if $size == medium {
+    @media screen and (min-width: $medium) { @content; }
+  }
+  @else if $size == large {
+    @media screen and (min-width: $large) { @content; }
+  }
+}
+
+@mixin img-replace($img, $w, $h, $disp: block) {
+  background-image: url("#{$path--rel}/#{$img}");
+  background-repeat: no-repeat;
+  width: $w;
+  height: $h;
+  display: $disp;
+}

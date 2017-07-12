@@ -1,0 +1,5 @@
+@import '../../styles/utilities';
+
+.private-page {
+  @extend %page-setup;
+}

@@ -1,0 +1,34 @@
+@import '../../styles/variables';
+@import '../../styles/utilities';
+
+footer.footer {
+  width: 100%;
+  text-align: center;
+  color: $white;
+  background-color: rgba($black, .8);
+  padding: 20px 20px 30px;
+  height: 200px;
+  margin: -200px auto 0;
+  @include media-break(medium) {
+    height: 130px;
+    margin: -130px auto 0;
+    padding: 30px 15px 10px;
+  }
+  a {
+    color: $white;
+    display: block;
+    text-transform: uppercase;
+    padding: 5px;
+    @media only screen and (min-width: 768px) {
+      display: inline-block;
+      padding: 0 20px;
+      &:not(:last-child) {
+        border-right: 2px solid $outer-space;
+      }
+    }
+  }
+  h5 {
+    padding: 20px 0 10px;
+    margin: 0;
+  }
+}

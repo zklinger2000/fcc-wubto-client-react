@@ -1,0 +1,12 @@
+@import '../../styles/variables';
+@import '../../styles/utilities';
+
+.not-found-page {
+  color: $tia-maria;
+  text-shadow: 1px 1px 2px $text-shadow;
+  text-align: center;
+  margin-top: 100px;
+  @include media-break(medium) {
+    margin-top: 300px;
+  }
+}

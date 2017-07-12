@@ -1,0 +1,5 @@
+@import '../../styles/utilities';
+
+.about-page {
+  @extend %page-setup;
+}

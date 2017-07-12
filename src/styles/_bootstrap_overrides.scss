@@ -1,0 +1,14 @@
+/* fix for 'cannot find file' error */
+$bootstrap-sass-asset-helper: true;
+
+@import 'variables';
+
+/* Override Base Colors */
+$brand-primary:         $outer-space !default;
+$brand-success:         $jewel !default;
+$brand-info:            $scooter !default;
+$brand-warning:         $pirate-gold !default;
+$brand-danger:          $oregon !default;
+
+/* Overrides above must happen before importing styles below */
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";

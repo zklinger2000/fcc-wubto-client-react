@@ -1,0 +1,45 @@
+/* Global Variables */
+@import './variables';
+@import './utilities';
+
+/* Bootstrap with Customized Colors */
+@import './bootstrap_overrides';
+
+/* Toastr */
+@import '../../node_modules/toastr/toastr.scss';
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  color: rgba($text-primary, .9);
+  background-color: $steel-blue;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  font-family: $font-family--primary;
+  font-size: em(22px);
+  line-height: em(28px, $base--line);
+}
+h2, h3 {
+  font-family: $font-family--secondary;
+}
+a {
+  color: $scooter;
+}
+a:hover, a:focus {
+  color: $steel-blue;
+}
+/* App Content Wrapper */
+#app, .app {
+  position: relative;
+  height: 100%;
+}
+.content-wrapper {
+  margin: 0;
+  padding-top: 65px;
+  min-height: 100%;
+  @include media-break(medium) {
+    padding-bottom: 130px;
+  }
+}

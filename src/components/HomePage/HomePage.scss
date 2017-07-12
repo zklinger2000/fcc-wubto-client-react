@@ -1,0 +1,28 @@
+@import '../../styles/variables';
+@import '../../styles/utilities';
+
+.home-page {
+  @extend %page-setup;
+  > header {
+    width: 100%;
+    color: $white;
+    background-color: $black;
+    padding: 10px 15px;
+    > h1 {
+      font-weight: 700;
+      margin-top: 0;
+      @include media-break(medium) {
+        font-size: em(48px);
+      }
+    }
+    > p {
+      font-size: em(16px);
+      @include media-break(medium) {
+        font-size: em(18px);
+      }
+    }
+  }
+  > section {
+    padding: 25px 15px;
+  }
+}
