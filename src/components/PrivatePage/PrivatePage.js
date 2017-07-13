@@ -9,7 +9,6 @@ import './PrivatePage.scss';
 
 class PrivatePage extends Component {
   componentDidMount() {
-    console.info('CDM: PrivatePage');
     const { authenticated } = this.props;
     const { getPrivateResource } = this.props.actions;
 

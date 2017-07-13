@@ -1,0 +1,32 @@
+import initialState from './initialState';
+import {
+  YELP_SET_CURRENT_POSITION,
+  YELP_SET_CURRENT_LOCATION
+} from '../constants/actionTypes';
+
+export default function(state = initialState.yelp, action) {
+  switch(action.type) {
+    case YELP_SET_CURRENT_POSITION:
+      return {
+        ...state,
+        current: Object.assign({}, state.current, {
+          latitude: action.payload[0],
+          longitude: action.payload[1]
+        })
+      };
+    case YELP_SET_CURRENT_LOCATION:
+      return {
+        ...state,
+        current: Object.assign({}, state.current, {
+          address1: action.payload.address1,
+          city: action.payload.city,
+          state: action.payload.state,
+          zip_code: action.payload.zip_code,
+          country: action.payload.country,
+          display_address: action.payload.display_address
+        })
+      };
+    default:
+      return state;
+  }
+}

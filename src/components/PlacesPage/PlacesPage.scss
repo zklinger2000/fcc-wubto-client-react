@@ -1,0 +1,9 @@
+@import '../../styles/utilities';
+
+.places-page {
+  @extend %page-setup;
+  text-align: center;
+  > section {
+    padding: 25px 15px;
+  }
+}
