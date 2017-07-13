@@ -3,26 +3,26 @@
 
 .home-page {
   @extend %page-setup;
-  > header {
-    width: 100%;
-    color: $white;
-    background-color: $black;
-    padding: 10px 15px;
-    > h1 {
+  text-align: center;
+  header {
+    h1 {
       font-weight: 700;
-      margin-top: 0;
-      @include media-break(medium) {
-        font-size: em(48px);
-      }
     }
-    > p {
-      font-size: em(16px);
+    h2 {
+      font-size: em(24px);
+      line-height: em(22px);
+      padding: 0 30px;
       @include media-break(medium) {
-        font-size: em(18px);
+        font-size: em(28px);
+        line-height: em(22px);
       }
     }
   }
   > section {
-    padding: 25px 15px;
+    padding: 20px;
+  }
+  > section:last-of-type {
+    padding: 20px 40px 100px;
+    line-height: em(30px);
   }
 }
