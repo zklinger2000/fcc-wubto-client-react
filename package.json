@@ -4,7 +4,7 @@
   "description": "A React client app with ",
   "engines": {
     "npm": ">=3",
-    "node": "6.11"
+    "node": "7.10.1"
   },
   "scripts": {
     "preinstall": "node tools/nodeVersionCheck.js",
