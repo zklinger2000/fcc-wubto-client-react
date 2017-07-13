@@ -11,7 +11,7 @@ const Header = (props) => {
         <li className={props.pathname === 'home' ? 'active' : null}>
           <IndexLink to="/">Home</IndexLink>
         </li>
-        <li className={props.pathname === 'search' ? 'active' : null}>
+        <li className={props.pathname === 'places' ? 'active' : null}>
           <Link to="/places"><i className="fa fa-search"/><text> Places</text></Link>
         </li>
         {props.authenticated && <li className={props.pathname === 'friends' ? 'active' : null}>
