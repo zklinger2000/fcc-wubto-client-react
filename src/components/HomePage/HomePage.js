@@ -23,11 +23,11 @@ class HomePage extends Component {
           <h2>Choose a new hangout.<br/> Let your friends know you'll be there.</h2>
         </header>
         <section className="location">
-          <p>Current Location: {current.display_address && current.display_address[1] || ''}</p>
+          <p>Current Location: {current.display_address && current.display_address[1] || 'Not set'}</p>
         </section>
 
         <section>
-          <Link to="/search"><button className="btn btn-primary">Find</button></Link> a new place
+          <Link to="/places"><button className="btn btn-primary">Find</button></Link> a new place
         </section>
 
         {!this.props.authenticated && (

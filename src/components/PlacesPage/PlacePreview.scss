@@ -1,0 +1,76 @@
+@import '../../styles/variables';
+@import '../../styles/_utilities.scss';
+
+.place-preview {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: rgba($black, 0.2);
+  a {
+    display: inline-block;
+    vertical-align: top;
+    @include media-break(medium) {
+      width: 80%;
+    }
+  }
+  a > div.image-wrapper {
+    width: 200px;
+    height: auto;
+    max-height: 200px;
+    overflow-y: hidden;
+    display: inline-block;
+    margin: 10px;
+    img {
+      height: auto;
+      width: 200px;
+    }
+  }
+  a > .info {
+    color: $text-primary;
+    vertical-align: top;
+    margin: 10px;
+    @include media-break(medium) {
+      display: inline-block;
+      width: calc(100% - 240px);
+    }
+    h4 {
+      margin-top: 0;
+      font-size: em(20px);
+    }
+    label {
+      margin-right: 0.5em;
+      color: rgba($text-primary, 0.8);
+      text-transform: uppercase;
+    }
+    text {
+      color: rgba($text-primary, 0.7);
+    }
+    p:first-of-type:before {
+      content: " ";
+      border: 1px solid rgba($white, .1);
+      margin: 15px 0;
+      display: block;
+      //max-width: 90px;
+    }
+  }
+  section.confirmation {
+    text-align: right;
+    width: 100%;
+    @include media-break(medium) {
+      display: inline-block;
+      width: 20%;
+    }
+    > div {
+      color: $text-primary;
+      text-align: center;
+      width: 100px;
+      //display: inline-block;
+      margin-left: auto;
+      vertical-align: top;
+      line-height: 100px;
+      .fa {
+        font-size: em(40px);
+      }
+    }
+  }
+}

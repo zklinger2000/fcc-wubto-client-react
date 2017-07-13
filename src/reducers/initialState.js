@@ -8,7 +8,7 @@ export default {
   yelp: {
     search: {
       term: '',
-      categories: [],
+      categories: '',
       location: '',
       latitude: undefined,
       longitude: undefined
@@ -19,9 +19,10 @@ export default {
       state: '',
       zip_code: '',
       country: '',
-      display_address: ['', 'San Francisco, CA 94117'],
+      display_address: [],
       latitude: undefined,
       longitude: undefined
-    }
+    },
+    places: []
   }
 };

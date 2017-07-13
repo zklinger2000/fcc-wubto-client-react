@@ -8,6 +8,7 @@ import * as actions from '../../actions/yelp.actions';
 import Helmet from 'react-helmet';
 import './PlacesPage.scss';
 import ScrollToTopOnMount from '../ScrollToTopOnMount/ScrollToTopOnMount';
+import PlacePreview from './PlacePreview';
 
 class PlacesPage extends Component {
   constructor(props, context) {
@@ -16,20 +17,29 @@ class PlacesPage extends Component {
     this.handleSearch = this.handleSearch.bind(this);
   }
 
+  componentDidMount() {
+    this.props.actions.searchDefault(this.props.current);
+  }
+
   handleSearch() {
     this.props.actions.searchDefault(this.props.current);
   }
 
   render() {
+    const { places } = this.props;
+
     return (
-      <section className="search-page">
+      <section className="places-page">
         <ScrollToTopOnMount/>
         <Helmet
           title="Wubto"
-          titleTemplate="%s | Choose a new hangout. Let your friends know you'll be there."
+          titleTemplate="%s | Places"
         />
         <section className="search">
           <button onClick={this.handleSearch} className="btn btn-primary">Search</button>
+        </section>
+        <section className="places-list">
+          { places.map(place => <PlacePreview key={place.id} place={place} />) }
         </section>
       </section>
     );
@@ -39,7 +49,8 @@ class PlacesPage extends Component {
 PlacesPage.propTypes = {
   actions: PropTypes.object.isRequired,
   search: PropTypes.object.isRequired,
-  current: PropTypes.object.isRequired
+  current: PropTypes.object.isRequired,
+  places: PropTypes.array.isRequired
 };
 PlacesPage.defaultProps = {};
 
@@ -47,7 +58,8 @@ function mapStateToProps(state) {
   return {
     user: state.auth.user,
     search: state.yelp.search,
-    current: state.yelp.current
+    current: state.yelp.current,
+    places: state.yelp.places || []
   };
 }
 function mapDispatchToProps(dispatch) {
