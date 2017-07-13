@@ -11,17 +11,14 @@ const Header = (props) => {
         <li className={props.pathname === 'home' ? 'active' : null}>
           <IndexLink to="/">Home</IndexLink>
         </li>
-        <li className={props.pathname === 'about' ? 'active' : null}>
-          <Link to="/about">About</Link>
+        <li className={props.pathname === 'search' ? 'active' : null}>
+          <Link to="/places"><i className="fa fa-search"/><text> Places</text></Link>
         </li>
-        <li className={props.pathname === 'public' ? 'active' : null}>
-          <Link to="/public">Public</Link>
-        </li>
-        {props.authenticated && <li className={props.pathname === 'private' ? 'active' : null}>
-          <Link to="/private">Private</Link>
+        {props.authenticated && <li className={props.pathname === 'friends' ? 'active' : null}>
+          <Link to="/friends"><i className="fa fa-users"/><text> Friends</text></Link>
         </li>}
         {!props.authenticated && <li className="pull-right">
-          <a href={`${process.env.NODE_ENV === 'production' ? 'https://fcc-heroku-rest-api.herokuapp.com' : 'http://localhost:8050'}/login/facebook`} target="_self"><i className="fa fa-facebook-official fa-2x"/> Login</a>
+          <a href={`${process.env.NODE_ENV === 'production' ? 'https://fcc-heroku-wubto-rest-api.herokuapp.com' : 'http://localhost:8050'}/login/facebook`} target="_self"><i className="fa fa-facebook-official fa-2x"/> Login</a>
         </li>}
         {props.authenticated && <li className="pull-right">
           <Link to="/logout">Logout</Link>

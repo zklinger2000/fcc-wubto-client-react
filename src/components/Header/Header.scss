@@ -18,21 +18,32 @@ nav {
       }
       > a {
         display: block;
-        min-width: 60px;
+        min-width: 76px;
         height: 65px;
         text-align: center;
         line-height: 65px;
         color: rgba($white, .6);
         text-decoration: none;
         @include media-break(medium) {
-          min-width: 78px;
+          min-width: 120px;
         }
-        i {
+        i.fa {
           margin-bottom: .5rem;
           vertical-align: middle;
+          font-size: 2em;
+          @include media-break(medium) {
+            font-size: 1em;
+            margin-right: 10px;
+          }
         }
         i.fa-facebook-official {
           color: #3b5998;
+        }
+        text {
+          display: none;
+          @include media-break(medium) {
+            display: inline-block;
+          }
         }
       }
     }

@@ -12,9 +12,9 @@ class Footer extends Component {
       <footer className="footer">
         <section className="links">
           {pathname !== 'home' && <IndexLink to="/">Home</IndexLink>}
+          {pathname !== 'places' && <Link to="/places">Places</Link>}
+          {authenticated && pathname !== 'friends' && <Link to="/friends">Friends</Link>}
           {pathname !== 'about' && <Link to="/about">About</Link>}
-          {pathname !== 'public' && <Link to="/public">Public</Link>}
-          {authenticated && pathname !== 'private' && <Link to="/private">Private</Link>}
         </section>
         <h5>© Fancy Legal Stuff</h5>
       </footer>
