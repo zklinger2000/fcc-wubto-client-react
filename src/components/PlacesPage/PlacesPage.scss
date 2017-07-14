@@ -1,8 +1,55 @@
 @import '../../styles/utilities';
+@import '../../styles/variables';
 
 .places-page {
   @extend %page-setup;
   > section {
     padding: 25px 15px;
+  }
+  > section.search {
+    background-color: rgba($black, 0.6);
+    form {
+      label {
+        color: $text-secondary;
+      }
+      > div > div > input {
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 0.25em 0.5em;
+      }
+      > div:last-of-type {
+        width: 100%;
+        display: inline-block;
+        text-align: right;
+        margin-top: 15px;
+      }
+    }
+    @include media-break(medium) {
+      max-width: 768px;
+      margin: 0 auto;
+      padding: 25px 15px 10px;
+      form {
+        > div:nth-child(-n+3) {
+          display: inline-block;
+          width: calc(50% - 10px);
+        }
+        > div:nth-child(odd) {
+          margin-right: 15px;
+        }
+        > div:last-of-type {
+          display: inline-block;
+          width: 40px;
+        }
+        > div:last-of-type {
+          width: calc(50% - 10px);
+          vertical-align: top;
+        }
+      }
+    }
+  }
+  > section.places-list {
+    max-width: 768px;
+    padding: 25px 0;
+    margin: 0 auto;
   }
 }

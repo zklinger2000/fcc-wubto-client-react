@@ -4,7 +4,8 @@ import axios from 'axios';
 import {
   YELP_SET_CURRENT_LOCATION,
   YELP_SET_CURRENT_POSITION,
-  YELP_SET_PLACES
+  YELP_SET_PLACES,
+  YELP_SET_SEARCH_TERMS
 } from '../constants/actionTypes';
 // import toastr from 'toastr';
 
@@ -33,6 +34,12 @@ export function setPlaces(places) {
   };
 }
 
+export function setSearchTerms(formData) {
+  return {
+    type: YELP_SET_SEARCH_TERMS,
+    payload: formData
+  };
+}
 
 // Find string location from coordinates
 export function getCurrentLocation(coords) {
@@ -60,6 +67,26 @@ export function searchDefault(location) {
     axios.post(`${API_URL}/yelp/search`, {
       location: location.display_address[1],
       categories: 'bars,restaurants'
+    })
+      .then(response => {
+        // TODO: Error checking
+        const { businesses } = response.data;
+        dispatch(setPlaces(businesses));
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
+}
+
+export function searchSubmit(formData) {
+  return dispatch => {
+    // TODO: Dispatch action that adds search form data to current
+    dispatch(setSearchTerms(formData));
+    axios.post(`${API_URL}/yelp/search`, {
+      location: formData.location,
+      categories: formData.categories,
+      term: formData.term
     })
       .then(response => {
         // TODO: Error checking

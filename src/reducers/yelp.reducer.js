@@ -2,7 +2,8 @@ import initialState from './initialState';
 import {
   YELP_SET_CURRENT_POSITION,
   YELP_SET_CURRENT_LOCATION,
-  YELP_SET_PLACES
+  YELP_SET_PLACES,
+  YELP_SET_SEARCH_TERMS
 } from '../constants/actionTypes';
 
 export default function(state = initialState.yelp, action) {
@@ -31,6 +32,11 @@ export default function(state = initialState.yelp, action) {
       return {
         ...state,
         places: action.payload
+      };
+    case YELP_SET_SEARCH_TERMS:
+      return {
+        ...state,
+        search: action.payload
       };
     default:
       return state;

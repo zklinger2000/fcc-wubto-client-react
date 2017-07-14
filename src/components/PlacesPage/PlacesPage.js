@@ -9,6 +9,7 @@ import Helmet from 'react-helmet';
 import './PlacesPage.scss';
 import ScrollToTopOnMount from '../ScrollToTopOnMount/ScrollToTopOnMount';
 import PlacePreview from './PlacePreview';
+import SearchForm from './SearchForm';
 
 class PlacesPage extends Component {
   constructor(props, context) {
@@ -21,8 +22,8 @@ class PlacesPage extends Component {
     this.props.actions.searchDefault(this.props.current);
   }
 
-  handleSearch() {
-    this.props.actions.searchDefault(this.props.current);
+  handleSearch(formData) {
+    this.props.actions.searchSubmit(formData);
   }
 
   render() {
@@ -36,7 +37,7 @@ class PlacesPage extends Component {
           titleTemplate="%s | Places"
         />
         <section className="search">
-          <button onClick={this.handleSearch} className="btn btn-primary">Search</button>
+          <SearchForm onSubmit={this.handleSearch}/>
         </section>
         <section className="places-list">
           { places.map(place => <PlacePreview key={place.id} place={place} />) }
