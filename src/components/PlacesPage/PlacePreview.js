@@ -23,8 +23,8 @@ const PlacePreview = (props) => {
       </Link>
       <section className="confirmation">
         {!authenticated && !(confirm.isConfirming && confirm.id === place.id) && (
-          <a href={`${process.env.NODE_ENV === 'production' ? 'https://fcc-heroku-wubto-rest-api.herokuapp.com' : 'http://localhost:8050'}/login/facebook`} target="_self">
-            <div className="btn btn-primary" onClick={() => handleClick(place.id)}>
+          <a href={`${process.env.NODE_ENV === 'production' ? 'https://fcc-wubto-rest-api.herokuapp.com' : 'http://localhost:8050'}/login/facebook`} target="_self">
+            <div className="btn btn-info" onClick={() => handleClick(place.id)}>
               <h4>Be there</h4>
               <i className="fa fa-circle-o"/>
             </div>
@@ -43,7 +43,7 @@ const PlacePreview = (props) => {
           </div>
         )}
         {(confirm.isConfirming && confirm.id === place.id) &&
-        <div>
+        <div className="btn btn-info">
           <h4>Confirming</h4>
           <i className="fa fa-cog fa-spin"/>
         </div>
