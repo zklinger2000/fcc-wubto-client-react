@@ -3,7 +3,9 @@ import {
   YELP_SET_CURRENT_POSITION,
   YELP_SET_CURRENT_LOCATION,
   YELP_SET_PLACES,
-  YELP_SET_SEARCH_TERMS
+  YELP_SET_SEARCH_TERMS,
+  YELP_CONFIRM_REQUEST,
+  YELP_CONFIRM_SUCCESS
 } from '../constants/actionTypes';
 
 export default function(state = initialState.yelp, action) {
@@ -37,6 +39,22 @@ export default function(state = initialState.yelp, action) {
       return {
         ...state,
         search: action.payload
+      };
+    case YELP_CONFIRM_REQUEST:
+      return {
+        ...state,
+        confirm: {
+          isConfirming: true,
+          id: action.payload
+        }
+      };
+    case YELP_CONFIRM_SUCCESS:
+      return {
+        ...state,
+        confirm: {
+          isConfirming: false,
+          id: ''
+        }
       };
     default:
       return state;

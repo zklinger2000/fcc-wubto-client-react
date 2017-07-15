@@ -16,6 +16,7 @@ class PlacesPage extends Component {
     super(props, context);
 
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleConfirmLocation = this.handleConfirmLocation.bind(this);
   }
 
   componentDidMount() {
@@ -26,8 +27,12 @@ class PlacesPage extends Component {
     this.props.actions.searchSubmit(formData);
   }
 
+  handleConfirmLocation(id, isConfirming) {
+    this.props.actions.toggleConfirmPlace(id, isConfirming);
+  }
+
   render() {
-    const { places } = this.props;
+    const { places, authenticated, confirm, user } = this.props;
 
     return (
       <section className="places-page">
@@ -40,7 +45,7 @@ class PlacesPage extends Component {
           <SearchForm onSubmit={this.handleSearch}/>
         </section>
         <section className="places-list">
-          { places.map(place => <PlacePreview key={place.id} place={place} />) }
+          { places.map(place => <PlacePreview key={place.id} place={place} handleClick={this.handleConfirmLocation} confirm={confirm} user={user} authenticated={authenticated}/>) }
         </section>
       </section>
     );
@@ -49,18 +54,23 @@ class PlacesPage extends Component {
 
 PlacesPage.propTypes = {
   actions: PropTypes.object.isRequired,
+  user: PropTypes.object,
+  authenticated: PropTypes.bool.isRequired,
   search: PropTypes.object.isRequired,
   current: PropTypes.object.isRequired,
-  places: PropTypes.array.isRequired
+  places: PropTypes.array.isRequired,
+  confirm: PropTypes.object.isRequired
 };
 PlacesPage.defaultProps = {};
 
 function mapStateToProps(state) {
   return {
     user: state.auth.user,
+    authenticated: state.auth.authenticated,
     search: state.yelp.search,
     current: state.yelp.current,
-    places: state.yelp.places || []
+    places: state.yelp.places || [],
+    confirm: state.yelp.confirm
   };
 }
 function mapDispatchToProps(dispatch) {

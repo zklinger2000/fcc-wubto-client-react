@@ -23,6 +23,10 @@ export default {
       latitude: undefined,
       longitude: undefined
     },
-    places: []
+    places: [],
+    confirm: {
+      isConfirming: false,
+      id: ''
+    }
   }
 };

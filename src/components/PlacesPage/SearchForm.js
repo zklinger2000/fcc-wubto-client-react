@@ -47,7 +47,7 @@ let SearchForm = props => {
         </div>
       </div>
       <div>
-        <button type="submit" className="btn btn-success" disabled={pristine || submitting}>Search</button>
+        <button type="submit" className="btn btn-default" disabled={pristine || submitting}>Search</button>
       </div>
     </form>
   );

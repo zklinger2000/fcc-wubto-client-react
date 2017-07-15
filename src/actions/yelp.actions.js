@@ -5,7 +5,9 @@ import {
   YELP_SET_CURRENT_LOCATION,
   YELP_SET_CURRENT_POSITION,
   YELP_SET_PLACES,
-  YELP_SET_SEARCH_TERMS
+  YELP_SET_SEARCH_TERMS,
+  YELP_CONFIRM_REQUEST,
+  YELP_CONFIRM_SUCCESS
 } from '../constants/actionTypes';
 // import toastr from 'toastr';
 
@@ -38,6 +40,20 @@ export function setSearchTerms(formData) {
   return {
     type: YELP_SET_SEARCH_TERMS,
     payload: formData
+  };
+}
+
+export function confirmRequest(id) {
+  return {
+    type: YELP_CONFIRM_REQUEST,
+    payload: id
+  };
+}
+
+export function confirmSuccess(id) {
+  return {
+    type: YELP_CONFIRM_SUCCESS,
+    payload: id
   };
 }
 
@@ -92,6 +108,27 @@ export function searchSubmit(formData) {
         // TODO: Error checking
         const { businesses } = response.data;
         dispatch(setPlaces(businesses));
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
+}
+
+export function toggleConfirmPlace(id, isConfirming) {
+  return dispatch => {
+    if (isConfirming) return;
+
+    const userToken = localStorage.getItem('user_token');
+
+    dispatch(confirmRequest(id));
+
+    axios.post(`${API_URL}/yelp/confirm/${id}`, {}, {
+      headers: { authorization: userToken }
+    })
+      .then(response => {
+        // TODO: Error checking
+        dispatch(confirmSuccess(response.data.place));
       })
       .catch(err => {
         console.error(err);

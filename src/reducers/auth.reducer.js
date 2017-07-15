@@ -4,6 +4,7 @@ import {
   AUTH_FACEBOOK_LOGOUT,
   AUTH_FACEBOOK_ERROR,
   AUTH_FACEBOOK_RECEIVE_PROFILE,
+  YELP_CONFIRM_SUCCESS
 } from '../constants/actionTypes';
 
 export default function(state = initialState.auth, action) {
@@ -20,9 +21,15 @@ export default function(state = initialState.auth, action) {
         authenticated: true,
         token: action.payload.token,
         user: {
-          displayName: action.payload.displayName
+          displayName: action.payload.displayName,
+          place: action.payload.place
         },
         error: null
+      };
+    case YELP_CONFIRM_SUCCESS:
+      return {
+        ...state,
+        user: Object.assign({}, state.user, { place: action.payload })
       };
     default:
       return state;
