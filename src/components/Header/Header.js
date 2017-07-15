@@ -18,7 +18,7 @@ const Header = (props) => {
           <Link to="/friends"><i className="fa fa-users"/><text> Friends</text></Link>
         </li>}
         {!props.authenticated && <li className="pull-right">
-          <a href={`${process.env.NODE_ENV === 'production' ? 'https://fcc-heroku-wubto-rest-api.herokuapp.com' : 'http://localhost:8050'}/login/facebook`} target="_self"><i className="fa fa-facebook-official fa-2x"/> Login</a>
+          <a href={`${process.env.NODE_ENV === 'production' ? 'https://fcc-wubto-rest-api.herokuapp.com' : 'http://localhost:8050'}/login/facebook`} target="_self"><i className="fa fa-facebook-official fa-2x"/> Login</a>
         </li>}
         {props.authenticated && <li className="pull-right">
           <Link to="/logout">Logout</Link>

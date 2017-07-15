@@ -32,7 +32,7 @@ class HomePage extends Component {
 
         {!this.props.authenticated && (
           <section>
-            <a href={`${process.env.NODE_ENV === 'production' ? 'https://fcc-heroku-wubto-rest-api.herokuapp.com' : 'http://localhost:8050'}/login/facebook`} target="_self"><button className="btn btn-primary">Login</button></a> to see where your friends will be
+            <a href={`${process.env.NODE_ENV === 'production' ? 'https://fcc-wubto-rest-api.herokuapp.com' : 'http://localhost:8050'}/login/facebook`} target="_self"><button className="btn btn-primary">Login</button></a> to see where your friends will be
           </section>
         )}
 
