@@ -23,7 +23,7 @@ const history = syncHistoryWithStore(browserHistory, store);
     token based auth system.
  */
 const API_URL = process.env.NODE_ENV === 'production'
-  ? 'https://fcc-heroku-rest-api.herokuapp.com'
+  ? 'https://fcc-wubto-rest-api.herokuapp.com'
   : 'http://localhost:8050';
 
 const userToken = localStorage.getItem('user_token');
