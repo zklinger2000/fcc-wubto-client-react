@@ -37,7 +37,8 @@ nav {
           }
         }
         i.fa-facebook-official {
-          color: #3b5998;
+          color: $facebook;
+          font-size: 2em;
         }
         text {
           display: none;
