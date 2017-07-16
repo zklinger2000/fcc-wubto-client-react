@@ -1,0 +1,22 @@
+@import '../../styles/variables';
+@import '../../styles/_utilities.scss';
+
+.expired-page {
+  max-width: 768px;
+  margin: 150px auto 150px;
+  text-align: center;
+  h2 {
+    margin-bottom: 40px;
+  }
+  a {
+    font-size: em(20px);
+    > i {
+      color: $facebook;
+      margin-right: 0.25em;
+    }
+    > text {
+      line-height: 46px;
+      vertical-align: top;
+    }
+  }
+}

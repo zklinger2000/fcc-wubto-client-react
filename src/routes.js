@@ -5,6 +5,7 @@ import App from './components/App/App';
 import HomePage from './components/HomePage/HomePage';
 import LoginReturn from './components/Auth/LoginReturn';
 import Logout from './components/Auth/Logout';
+import Expired from './components/Auth/Expired';
 import PlacesPage from './components/PlacesPage/PlacesPage';
 import AboutPage from './components/AboutPage/AboutPage';
 import require_auth from './components/Auth/require_auth';
@@ -16,6 +17,7 @@ export default (
     <IndexRoute component={HomePage} />
     <Route path="/login/return" component={LoginReturn}/>
     <Route path="/logout" component={Logout}/>
+    <Route path="/expired" component={Expired}/>
     <Route path="/places" component={PlacesPage}/>
     <Route path="/about" component={AboutPage}/>
     <Route path="/private" component={require_auth(PrivatePage)}/>
