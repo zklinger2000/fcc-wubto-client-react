@@ -2,6 +2,7 @@ import React, {
   Component,
   PropTypes,
 } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../actions/yelp.actions';
@@ -27,8 +28,8 @@ class PlacesPage extends Component {
     this.props.actions.searchSubmit(formData);
   }
 
-  handleConfirmLocation(id, isConfirming) {
-    this.props.actions.toggleConfirmPlace(id, isConfirming);
+  handleConfirmLocation(place, isConfirming) {
+    this.props.actions.toggleConfirmPlace(place, isConfirming);
   }
 
   render() {
@@ -44,7 +45,13 @@ class PlacesPage extends Component {
         <section className="search">
           <SearchForm onSubmit={this.handleSearch}/>
         </section>
+        <section className="status">
+          <div className="breadcrumb alert-info">
+            <label>Your Plans: </label><Link to={((user.place && user.place.id) ? "/places/id/" + user.place.id : "/places")}>{user.place && user.place.name || 'Not set'}</Link>
+          </div>
+        </section>
         <section className="places-list">
+          <label>Results: </label><text>{places.length}</text>
           { places.map(place => <PlacePreview key={place.id} place={place} handleClick={this.handleConfirmLocation} confirm={confirm} user={user} authenticated={authenticated}/>) }
         </section>
       </section>

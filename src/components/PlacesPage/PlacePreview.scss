@@ -13,6 +13,11 @@
       width: 80%;
     }
   }
+  > a:hover {
+    -webkit-box-shadow:  1px 1px 10px $box-shadow, -1px -1px 10px $box-shadow;
+    -moz-box-shadow:  1px 1px 10px $box-shadow, -1px -1px 10px $box-shadow;
+    box-shadow:  1px 1px 10px $box-shadow, -1px -1px 10px $box-shadow;
+  }
   a > div.image-wrapper {
     width: 200px;
     height: auto;
@@ -71,11 +76,20 @@
       margin-left: auto;
       vertical-align: top;
       line-height: 50px;
+      &:hover {
+        color: $white
+      }
+      h4 {
+        color: $white;
+      }
       .fa {
         font-size: em(40px);
       }
       .fa-cog {
-        color: rgba(white, 0.6);
+        color: $white;
+      }
+      .fa-check-circle-o {
+        color: $white;
       }
     }
   }

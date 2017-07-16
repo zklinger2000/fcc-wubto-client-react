@@ -31,7 +31,6 @@ let SearchForm = props => {
             component="input"
             type="text"
             placeholder="...bakeries, museums, parks..."
-            required="true"
           />
         </div>
       </div>

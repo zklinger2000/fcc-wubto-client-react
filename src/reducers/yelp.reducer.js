@@ -5,7 +5,8 @@ import {
   YELP_SET_PLACES,
   YELP_SET_SEARCH_TERMS,
   YELP_CONFIRM_REQUEST,
-  YELP_CONFIRM_SUCCESS
+  YELP_CONFIRM_SUCCESS,
+  YELP_CONFIRM_ERROR
 } from '../constants/actionTypes';
 
 export default function(state = initialState.yelp, action) {
@@ -48,6 +49,7 @@ export default function(state = initialState.yelp, action) {
           id: action.payload
         }
       };
+    case YELP_CONFIRM_ERROR:
     case YELP_CONFIRM_SUCCESS:
       return {
         ...state,

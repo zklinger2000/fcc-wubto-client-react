@@ -25,8 +25,8 @@
       }
     }
     @include media-break(medium) {
-      max-width: 768px;
-      margin: 0 auto;
+      //max-width: 768px;
+      //margin: 0 auto;
       padding: 25px 15px 10px;
       form {
         > div:nth-child(-n+3) {
@@ -47,9 +47,23 @@
       }
     }
   }
-  > section.places-list {
+  > section.search, > section.status, > section.places-list {
     max-width: 768px;
-    padding: 25px 0;
     margin: 0 auto;
+  }
+  > section.status {
+    padding: 20px 0 0;
+    > .breadcrumb {
+      margin: 0;
+      label {
+        margin-right: 0.5em;
+      }
+    }
+  }
+  > section.places-list {
+    padding: 25px 0;
+    > label {
+      margin-right: 0.5em;
+    }
   }
 }

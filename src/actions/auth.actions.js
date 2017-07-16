@@ -64,7 +64,7 @@ export function tokenLogin() {
         if (response.data && response.data.token) {
           dispatch(authFacebookReceiveProfile(response.data));
           // TODO: Add logic to save the current path when 'login' was clicked
-          browserHistory.push('/');
+          browserHistory.push('/places');
         } else {
           dispatch(authFacebookError('No user found'));
         }

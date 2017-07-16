@@ -1,15 +1,17 @@
 "use strict";
 import axios from 'axios';
-// import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import {
   YELP_SET_CURRENT_LOCATION,
   YELP_SET_CURRENT_POSITION,
   YELP_SET_PLACES,
   YELP_SET_SEARCH_TERMS,
   YELP_CONFIRM_REQUEST,
-  YELP_CONFIRM_SUCCESS
+  YELP_CONFIRM_SUCCESS,
+  YELP_CONFIRM_ERROR
 } from '../constants/actionTypes';
-// import toastr from 'toastr';
+import toastr from 'toastr';
+import { logoutUser } from './auth.actions';
 
 const API_URL = process.env.NODE_ENV === 'production'
   ? 'https://fcc-wubto-rest-api.herokuapp.com'
@@ -57,6 +59,13 @@ export function confirmSuccess(id) {
   };
 }
 
+export function confirmError(err) {
+  return {
+    type: YELP_CONFIRM_ERROR,
+    payload: err
+  };
+}
+
 // Find string location from coordinates
 export function getCurrentLocation(coords) {
   return dispatch => {
@@ -73,7 +82,7 @@ export function getCurrentLocation(coords) {
         dispatch(searchDefault(location));
       })
       .catch(err => {
-        console.error(err);
+        errorHandler(err, dispatch, true);
       });
   };
 }
@@ -90,7 +99,7 @@ export function searchDefault(location) {
         dispatch(setPlaces(businesses));
       })
       .catch(err => {
-        console.error(err);
+        errorHandler(err, dispatch, true);
       });
   };
 }
@@ -110,20 +119,20 @@ export function searchSubmit(formData) {
         dispatch(setPlaces(businesses));
       })
       .catch(err => {
-        console.error(err);
+        errorHandler(err, dispatch, true);
       });
   };
 }
 
-export function toggleConfirmPlace(id, isConfirming) {
+export function toggleConfirmPlace(place, isConfirming) {
   return dispatch => {
     if (isConfirming) return;
 
     const userToken = localStorage.getItem('user_token');
 
-    dispatch(confirmRequest(id));
+    dispatch(confirmRequest(place.id));
 
-    axios.post(`${API_URL}/yelp/confirm/${id}`, {}, {
+    axios.post(`${API_URL}/yelp/confirm/${place.id}`, { place }, {
       headers: { authorization: userToken }
     })
       .then(response => {
@@ -131,7 +140,39 @@ export function toggleConfirmPlace(id, isConfirming) {
         dispatch(confirmSuccess(response.data.place));
       })
       .catch(err => {
-        console.error(err);
+        errorHandler(err, dispatch, true);
       });
   };
+}
+
+function errorHandler(err, dispatch, debug) {
+  const { name, message } = err.response.data;
+
+  if (debug) {
+    console.log('name:', name); // eslint-disable-line no-console
+    console.log('message:', message); // eslint-disable-line no-console
+    // console.log('config:', err.config); // eslint-disable-line no-console
+    // console.log('status:', err.response.status);  // eslint-disable-line no-console
+    // console.log('response:', err.response);
+  }
+
+  dispatch(confirmError(err));
+
+  switch(name) {
+    case 'JsonWebTokenError':
+      toastr.error(message, 'Error', { positionClass: 'toast-bottom-full-width' });
+      browserHistory.push('/logout');
+      break;
+    case 'TokenExpiredError':
+      dispatch(logoutUser());
+      browserHistory.push('/expired');
+      break;
+    case 'INVALID_CATEGORY':
+    case 'LOCATION_NOT_SPECIFIED':
+    case 'LOCATION_NOT_FOUND':
+      toastr.info(message, '', { positionClass: 'toast-top-right' });
+      break;
+    default:
+      break;
+  }
 }
