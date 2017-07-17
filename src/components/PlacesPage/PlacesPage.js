@@ -49,7 +49,7 @@ class PlacesPage extends Component {
           <div className="breadcrumb alert-info">
             <label>Your Plans: </label><Link to={((user.place && user.place.id) ? "/places/id/" + user.place.id : "/places")}>
             {user.place && user.place.name || 'Not set'}
-            {user.place && (new Date(user.place.expiresAt).toISOString() < new Date().toISOString()) ? ' (Expired)' : null}</Link>
+            {user.place && user.place.id && (new Date(user.place.expiresAt).toISOString() < new Date().toISOString()) ? ' (Expired)' : null}</Link>
           </div>
         </section>
         <section className="places-list">

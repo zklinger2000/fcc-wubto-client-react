@@ -62,6 +62,18 @@ const PlacePreview = (props) => {
           <i className="fa fa-cog fa-spin"/>
         </div>
         }
+        { authenticated &&
+          user.friends &&
+          !!user.friends.filter(friend => {
+            return (friend.place.id === place.id && (new Date(friend.place.expiresAt).toISOString() > new Date().toISOString()));
+          }).length &&
+        (
+          <div>
+            <p className="alert-success">{user.friends && user.friends.filter(friend => {
+              return (friend.place.id === place.id && (new Date(friend.place.expiresAt).toISOString() > new Date().toISOString()));
+            }).length + (user.place.id === place.id ? 1 : 0)} Going</p>
+          </div>
+        )}
       </section>
     </article>
   );

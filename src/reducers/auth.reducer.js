@@ -22,14 +22,15 @@ export default function(state = initialState.auth, action) {
         token: action.payload.token,
         user: {
           displayName: action.payload.displayName,
-          place: action.payload.place
+          place: action.payload.place,
+          friends: action.payload.friends
         },
         error: null
       };
     case YELP_CONFIRM_SUCCESS:
       return {
         ...state,
-        user: Object.assign({}, state.user, { place: action.payload })
+        user: Object.assign({}, { friends: action.payload.friends }, { place: action.payload.place })
       };
     default:
       return state;

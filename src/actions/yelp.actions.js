@@ -52,10 +52,10 @@ export function confirmRequest(id) {
   };
 }
 
-export function confirmSuccess(id) {
+export function confirmSuccess(data) {
   return {
     type: YELP_CONFIRM_SUCCESS,
-    payload: id
+    payload: data
   };
 }
 
@@ -137,7 +137,7 @@ export function toggleConfirmPlace(place, isConfirming) {
     })
       .then(response => {
         // TODO: Error checking
-        dispatch(confirmSuccess(response.data.place));
+        dispatch(confirmSuccess(response.data));
       })
       .catch(err => {
         errorHandler(err, dispatch, true);
@@ -153,7 +153,6 @@ function errorHandler(err, dispatch, debug) {
     console.log('message:', message); // eslint-disable-line no-console
     // console.log('config:', err.config); // eslint-disable-line no-console
     // console.log('status:', err.response.status);  // eslint-disable-line no-console
-    // console.log('response:', err.response);
   }
 
   dispatch(confirmError(err));
