@@ -4,11 +4,26 @@ import React, {
 } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Helmet from 'react-helmet';
 import './HomePage.scss';
+import * as actions from '../../actions/auth.actions';
+import FacebookLogin from 'react-facebook-login';
 import ScrollToTopOnMount from '../ScrollToTopOnMount/ScrollToTopOnMount';
 
 class HomePage extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.handleFacebookLogin = this.handleFacebookLogin.bind(this);
+  }
+
+  handleFacebookLogin(response) {
+    const { facebookLogin } = this.props.actions;
+
+    facebookLogin(response);
+  }
+
   render() {
     const { current } = this.props;
     return (
@@ -32,7 +47,17 @@ class HomePage extends Component {
 
         {!this.props.authenticated && (
           <section>
-            <a href={`${process.env.NODE_ENV === 'production' ? 'https://fcc-wubto-rest-api.herokuapp.com' : 'http://localhost:8050'}/login/facebook`} target="_self"><button className="btn btn-primary">Login</button></a> to see where your friends will be
+            <FacebookLogin
+              appId="875935382564043"
+              autoLoad={false}
+              fields="name, friends"
+              scope="public_profile,user_friends"
+              callback={this.handleFacebookLogin}
+              icon=""
+              cssClass="btn btn-primary"
+              textButton="Login"
+              tag="a"
+            /> to see where your friends will be
           </section>
         )}
 
@@ -51,6 +76,7 @@ HomePage.propTypes = {
   authenticated: PropTypes.bool.isRequired,
   search: PropTypes.object.isRequired,
   current: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
@@ -62,4 +88,10 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(HomePage);
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
