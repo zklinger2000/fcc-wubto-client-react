@@ -110,6 +110,7 @@ export function searchDefault(current, search) {
     };
   }
   return dispatch => {
+    options.categories = options.categories.split(',').map(c => c.trim()).toString();
     // Add search terms to localStorage
     localStorage.setItem('search_terms', JSON.stringify(options));
     // Dispatch action that adds search form data to current
@@ -128,6 +129,7 @@ export function searchDefault(current, search) {
 
 export function searchSubmit(formData) {
   return dispatch => {
+    formData.categories = formData.categories.split(',').map(c => c.trim()).toString();
     // Add search terms to localStorage
     localStorage.setItem('search_terms', JSON.stringify(formData));
     // Dispatch action that adds search form data to current
