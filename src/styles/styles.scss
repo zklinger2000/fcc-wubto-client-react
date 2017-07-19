@@ -43,3 +43,17 @@ a:hover, a:focus {
     padding-bottom: 130px;
   }
 }
+.btn-facebook {
+  background-color: white;
+  color: black;
+  font-size: em(20px);
+  line-height: 42px;
+  i {
+    color: $facebook;
+    margin-right: 0.25em;
+    vertical-align: middle;
+  }
+}
+.btn-facebook:hover, .btn-facebook:focus {
+  background-color: $light-grey;
+}
