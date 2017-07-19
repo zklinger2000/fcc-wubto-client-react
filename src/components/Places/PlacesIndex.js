@@ -7,12 +7,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../actions/yelp.actions';
 import Helmet from 'react-helmet';
-import './PlacesPage.scss';
+import './PlacesIndex.scss';
 import ScrollToTopOnMount from '../ScrollToTopOnMount/ScrollToTopOnMount';
 import PlacePreview from './PlacePreview';
 import SearchForm from './SearchForm';
 
-class PlacesPage extends Component {
+class PlacesIndex extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -61,7 +61,7 @@ class PlacesPage extends Component {
   }
 }
 
-PlacesPage.propTypes = {
+PlacesIndex.propTypes = {
   actions: PropTypes.object.isRequired,
   user: PropTypes.object,
   authenticated: PropTypes.bool.isRequired,
@@ -70,7 +70,7 @@ PlacesPage.propTypes = {
   places: PropTypes.array.isRequired,
   confirm: PropTypes.object.isRequired
 };
-PlacesPage.defaultProps = {};
+PlacesIndex.defaultProps = {};
 
 function mapStateToProps(state) {
   return {
@@ -88,4 +88,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlacesPage);
+export default connect(mapStateToProps, mapDispatchToProps)(PlacesIndex);

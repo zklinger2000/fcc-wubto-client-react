@@ -89,7 +89,7 @@ export function getCurrentLocation(coords, search) {
             persistentSubmitErrors: false
           },
           payload: (search && search.location || location.display_address[1])
-        })
+        });
       })
       .catch(err => {
         errorHandler(err, dispatch, true);
