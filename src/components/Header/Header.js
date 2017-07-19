@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import { IndexLink, Link } from 'react-router';
 import './Header.scss';
+import FacebookLogin from 'react-facebook-login';
 
 const Header = (props) => {
   return (
@@ -18,7 +19,16 @@ const Header = (props) => {
           <Link to="/friends"><i className="fa fa-users"/><text> Friends</text></Link>
         </li>}
         {!props.authenticated && <li className="pull-right">
-          <a href={`${process.env.NODE_ENV === 'production' ? 'https://fcc-wubto-rest-api.herokuapp.com' : 'http://localhost:8050'}/login/facebook`} target="_self"><i className="fa fa-facebook-official fa-2x"/> Login</a>
+          <FacebookLogin
+            appId="875935382564043"
+            autoLoad={false}
+            fields="name, friends"
+            scope="public_profile,user_friends"
+            callback={props.handleClick}
+            icon="fa-facebook-official fa-2x"
+            textButton="Login"
+            tag="a"
+            />
         </li>}
         {props.authenticated && <li className="pull-right">
           <Link to="/logout">Logout</Link>
@@ -30,7 +40,8 @@ const Header = (props) => {
 
 Header.propTypes = {
   pathname: PropTypes.string.isRequired,
-  authenticated: PropTypes.bool.isRequired
+  authenticated: PropTypes.bool.isRequired,
+  handleClick: PropTypes.func.isRequired
 };
 
 export default Header;

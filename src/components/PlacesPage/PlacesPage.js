@@ -74,12 +74,12 @@ PlacesPage.defaultProps = {};
 
 function mapStateToProps(state) {
   return {
-    user: state.auth.user,
+    user: state.auth.user || {},
     authenticated: state.auth.authenticated,
-    search: state.yelp.search,
-    current: state.yelp.current,
+    search: state.yelp.search || {},
+    current: state.yelp.current || {},
     places: state.yelp.places || [],
-    confirm: state.yelp.confirm
+    confirm: state.yelp.confirm || {}
   };
 }
 function mapDispatchToProps(dispatch) {

@@ -8,11 +8,18 @@ import pathHelper from '../../utils/pathHelper';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import { geoFindMe } from '../../utils/geolocation';
-import * as actions from '../../actions/yelp.actions';
+import * as yelp from '../../actions/yelp.actions';
+import * as auth from '../../actions/auth.actions';
 
 class App extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.handleFacebookLogin = this.handleFacebookLogin.bind(this);
+  }
+
   componentDidMount() {
-    const { getCurrentLocation } = this.props.actions;
+    const { getCurrentLocation } = this.props.actions.yelp;
 
     // Check browser's location
     geoFindMe()
@@ -24,13 +31,19 @@ class App extends Component {
       });
   }
 
+  handleFacebookLogin(response) {
+    const { facebookLogin } = this.props.actions.auth;
+
+    facebookLogin(response);
+  }
+
   render() {
     const path = pathHelper.getBasePath(this.props.location.pathname);
     const { authenticated } = this.props;
 
     return (
       <div className="app">
-        <Header pathname={path} authenticated={authenticated}/>
+        <Header pathname={path} authenticated={authenticated} handleClick={this.handleFacebookLogin}/>
         <div className="content-wrapper">
           {this.props.children}
         </div>
@@ -58,7 +71,10 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(actions, dispatch)
+    actions: {
+      yelp: bindActionCreators(yelp, dispatch),
+      auth: bindActionCreators(auth, dispatch)
+    }
   };
 }
 

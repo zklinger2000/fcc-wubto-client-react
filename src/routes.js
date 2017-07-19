@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 
 import App from './components/App/App';
 import HomePage from './components/HomePage/HomePage';
-import LoginReturn from './components/Auth/LoginReturn';
+import Login from './components/Auth/Login';
 import Logout from './components/Auth/Logout';
 import Expired from './components/Auth/Expired';
 import PlacesPage from './components/PlacesPage/PlacesPage';
@@ -15,7 +15,7 @@ import NotFoundPage from './components/NotFoundPage/NotFoundPage.js';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage} />
-    <Route path="/login/return" component={LoginReturn}/>
+    <Route path="/login" component={Login}/>
     <Route path="/logout" component={Logout}/>
     <Route path="/expired" component={Expired}/>
     <Route path="/places" component={PlacesPage}/>

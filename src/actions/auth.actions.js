@@ -51,6 +51,24 @@ export function authFacebookRequestProfile() {
   };
 }
 
+export function facebookLogin(response) {
+  return dispatch => {
+    axios.post(`${API_URL}/facebook/login`, response)
+      .then(response => {
+        if (response.data && response.data.token) {
+          dispatch(authFacebookReceiveProfile(response.data));
+          // TODO: Add logic to save the current path when 'login' was clicked
+          browserHistory.push('/places');
+        } else {
+          dispatch(authFacebookError('No user found'));
+        }
+      })
+      .catch(err => {
+        errorHandler(err, dispatch, true);
+      });
+  };
+}
+
 export function tokenLogin() {
   const userToken = localStorage.getItem('user_token');
 

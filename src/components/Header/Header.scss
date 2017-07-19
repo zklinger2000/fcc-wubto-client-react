@@ -16,7 +16,7 @@ nav {
       &:last-of-type {
         margin-right: 10px;
       }
-      > a {
+      > a, > span > a {
         display: block;
         min-width: 76px;
         height: 65px;
@@ -37,7 +37,7 @@ nav {
           }
         }
         i.fa-facebook-official {
-          color: $facebook;
+          //color: $facebook;
           font-size: 2em;
         }
         text {
@@ -46,6 +46,14 @@ nav {
             display: inline-block;
           }
         }
+      }
+      > span > a {
+        //display: inline-block;
+        //height: 65px;
+        line-height: 1em;
+        //vertical-align: top;
+        //height: 100%;
+        //margin-bottom: 2em;
       }
     }
     > li.active {

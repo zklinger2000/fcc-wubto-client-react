@@ -22,23 +22,23 @@ const PlacePreview = (props) => {
         </div>
       </Link>
       <section className="confirmation">
-        {!authenticated && !(confirm.isConfirming && confirm.id === place.id) && (
-          <a href={`${process.env.NODE_ENV === 'production' ? 'https://fcc-wubto-rest-api.herokuapp.com' : 'http://localhost:8050'}/login/facebook`} target="_self">
-            <div className="btn btn-info" onClick={() => handleClick(place)}>
+        {!authenticated && confirm && !(confirm.isConfirming && confirm.id === place.id) && (
+          <Link to="/login">
+            <div className="btn btn-info">
               <h4>Be there</h4>
               <i className="fa fa-circle-o"/>
             </div>
-          </a>
+          </Link>
         )}
-        {authenticated && !(confirm.isConfirming && confirm.id === place.id) && (user.place.id !== place.id) && (
+        {authenticated && confirm && place && !(confirm.isConfirming && confirm.id === place.id) && (user.place && user.place.id !== place.id) && (
           <div className="btn btn-info" onClick={() => handleClick(place, confirm.isConfirming)}>
             <h4>Be there</h4>
             <i className="fa fa-circle-o"/>
           </div>
         )}
-        {authenticated &&
+        {authenticated && confirm && place &&
         !(confirm.isConfirming && confirm.id === place.id) &&
-        (user.place.id === place.id) &&
+        (user.place && user.place.id === place.id) &&
         (new Date(user.place.expiresAt).toISOString() > new Date().toISOString()) &&
         (
           <div className="btn btn-success" onClick={() => handleClick(place, confirm.isConfirming)}>
@@ -46,9 +46,9 @@ const PlacePreview = (props) => {
             <i className="fa fa-check-circle-o"/>
           </div>
         )}
-        {authenticated &&
+        {authenticated && confirm && place &&
         !(confirm.isConfirming && confirm.id === place.id) &&
-        (user.place.id === place.id) &&
+        (user.place && user.place.id === place.id) &&
         (new Date(user.place.expiresAt).toISOString() < new Date().toISOString()) &&
         (
           <div className="btn btn-danger" onClick={() => handleClick(place, confirm.isConfirming)}>
@@ -56,15 +56,15 @@ const PlacePreview = (props) => {
             <i className="fa fa-check-circle-o"/>
           </div>
         )}
-        {(confirm.isConfirming && confirm.id === place.id) &&
+        {confirm && (confirm.isConfirming && confirm.id === place.id) &&
         <div className="btn btn-info">
           <h4>Be there</h4>
           <i className="fa fa-cog fa-spin"/>
         </div>
         }
         { authenticated &&
-          user.friends &&
-          !!user.friends.filter(friend => {
+          user.friends && place && user.place &&
+        !!user.friends.filter(friend => {
             return (friend.place.id === place.id && (new Date(friend.place.expiresAt).toISOString() > new Date().toISOString()));
           }).length &&
         (

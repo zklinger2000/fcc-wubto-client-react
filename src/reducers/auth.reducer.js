@@ -20,11 +20,7 @@ export default function(state = initialState.auth, action) {
         ...state,
         authenticated: true,
         token: action.payload.token,
-        user: {
-          displayName: action.payload.displayName,
-          place: action.payload.place,
-          friends: action.payload.friends
-        },
+        user: action.payload.user,
         error: null
       };
     case YELP_CONFIRM_SUCCESS:
