@@ -20,11 +20,12 @@ class App extends Component {
 
   componentDidMount() {
     const { getCurrentLocation } = this.props.actions.yelp;
+    const { search } = this.props;
 
     // Check browser's location
     geoFindMe()
       .then(coords => {
-        getCurrentLocation(coords);
+        getCurrentLocation(coords, search);
       })
       .catch(err => {
         console.log(err); // eslint-disable-line no-console
@@ -58,14 +59,16 @@ App.propTypes = {
   location: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   authenticated: PropTypes.bool.isRequired,
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  search: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
   return {
     location: ownProps.location,
     user: state.auth.user,
-    authenticated: state.auth.authenticated
+    authenticated: state.auth.authenticated,
+    search: state.yelp.search
   };
 }
 

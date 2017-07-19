@@ -67,7 +67,7 @@ export function confirmError(err) {
 }
 
 // Find string location from coordinates
-export function getCurrentLocation(coords) {
+export function getCurrentLocation(coords, search) {
   return dispatch => {
     axios.post(`${API_URL}/yelp/search`, {
       latitude: coords[0],
@@ -79,7 +79,17 @@ export function getCurrentLocation(coords) {
 
         dispatch(setCurrentPosition(coords));
         dispatch(setCurrentLocation(location));
-        dispatch(searchDefault(location));
+        dispatch(searchDefault(location, search));
+        dispatch({
+          type: '@@redux-form/CHANGE',
+          meta: {
+            form: 'yelpSearchForm',
+            field: 'location',
+            touch: false,
+            persistentSubmitErrors: false
+          },
+          payload: (search && search.location || location.display_address[1])
+        })
       })
       .catch(err => {
         errorHandler(err, dispatch, true);
@@ -87,12 +97,24 @@ export function getCurrentLocation(coords) {
   };
 }
 
-export function searchDefault(location) {
-  return dispatch => {
-    axios.post(`${API_URL}/yelp/search`, {
-      location: location.display_address[1],
+export function searchDefault(current, search) {
+  let options;
+
+  if (search && (search.location || search.categories || search.term)) {
+    options = search;
+  }
+  else {
+    options = {
+      location: current.display_address[1],
       categories: 'bars,restaurants'
-    })
+    };
+  }
+  return dispatch => {
+    // Add search terms to localStorage
+    localStorage.setItem('search_terms', JSON.stringify(options));
+    // Dispatch action that adds search form data to current
+    dispatch(setSearchTerms(options));
+    axios.post(`${API_URL}/yelp/search`, options)
       .then(response => {
         // TODO: Error checking
         const { businesses } = response.data;
@@ -106,7 +128,9 @@ export function searchDefault(location) {
 
 export function searchSubmit(formData) {
   return dispatch => {
-    // TODO: Dispatch action that adds search form data to current
+    // Add search terms to localStorage
+    localStorage.setItem('search_terms', JSON.stringify(formData));
+    // Dispatch action that adds search form data to current
     dispatch(setSearchTerms(formData));
     axios.post(`${API_URL}/yelp/search`, {
       location: formData.location,
@@ -146,7 +170,15 @@ export function toggleConfirmPlace(place, isConfirming) {
 }
 
 function errorHandler(err, dispatch, debug) {
-  const { name, message } = err.response.data;
+  let name, message = '';
+
+  if (err.response && err.response.data) {
+    name = err.response.data.name;
+    message = err.response.data.message;
+  }
+  else {
+    name = message = err;
+  }
 
   if (debug) {
     console.log('name:', name); // eslint-disable-line no-console

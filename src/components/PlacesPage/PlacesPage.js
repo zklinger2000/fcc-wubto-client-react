@@ -21,7 +21,7 @@ class PlacesPage extends Component {
   }
 
   componentDidMount() {
-    this.props.actions.searchDefault(this.props.current);
+    this.props.actions.searchDefault(this.props.current, this.props.search);
   }
 
   handleSearch(formData) {

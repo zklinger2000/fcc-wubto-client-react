@@ -64,7 +64,8 @@ export function facebookLogin(response) {
         }
       })
       .catch(err => {
-        errorHandler(err, dispatch, true);
+        console.log(err);
+        // errorHandler(err, dispatch, true);
       });
   };
 }

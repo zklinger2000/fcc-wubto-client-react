@@ -56,14 +56,26 @@ SearchForm = reduxForm({
   form: 'yelpSearchForm' // a unique identifier for this form
 })(SearchForm);
 
-function formatInitialValues(location) {
-  return !location.city ? {} : { location: `${location.city}, ${location.state}`};
+function formatInitialValues(current, search) {
+  let options;
+
+  if (search.location || search.categories || search.term) {
+    options = search;
+  }
+  else {
+    options = {
+      location: current.display_address[1],
+      categories: 'bars,restaurants'
+    };
+  }
+  // return !current.city ? {} : { location: `${current.city}, ${current.state}`};
+  return options;
 }
 
 // You have to connect() to any reducers that you wish to connect to yourself
 SearchForm = connect(
   state => ({
-    initialValues: formatInitialValues(state.yelp.current)
+    initialValues: formatInitialValues(state.yelp.current, state.yelp.search)
   }),
   { actions } // bind action creators
 )(SearchForm);
