@@ -6,7 +6,10 @@ import {
   YELP_SET_SEARCH_TERMS,
   YELP_CONFIRM_REQUEST,
   YELP_CONFIRM_SUCCESS,
-  YELP_CONFIRM_ERROR
+  YELP_CONFIRM_ERROR,
+  YELP_PLACE_REQUEST,
+  YELP_PLACE_SUCCESS,
+  YELP_PLACE_ERROR
 } from '../constants/actionTypes';
 
 export default function(state = initialState.yelp, action) {
@@ -56,6 +59,28 @@ export default function(state = initialState.yelp, action) {
         confirm: {
           isConfirming: false,
           id: ''
+        }
+      };
+    case YELP_PLACE_REQUEST:
+      return {
+        ...state,
+        place: {
+          isLoading: true,
+          id: action.payload
+        }
+      };
+    case YELP_PLACE_SUCCESS:
+      return {
+        ...state,
+        place: Object.assign({}, action.payload, { isLoading: false })
+      };
+    case YELP_PLACE_ERROR:
+      return {
+        ...state,
+        place: {
+          isLoading: false,
+          id: undefined,
+          name: undefined
         }
       };
     default:

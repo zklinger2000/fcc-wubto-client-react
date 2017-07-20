@@ -8,7 +8,10 @@ import {
   YELP_SET_SEARCH_TERMS,
   YELP_CONFIRM_REQUEST,
   YELP_CONFIRM_SUCCESS,
-  YELP_CONFIRM_ERROR
+  YELP_CONFIRM_ERROR,
+  YELP_PLACE_REQUEST,
+  YELP_PLACE_SUCCESS,
+  YELP_PLACE_ERROR
 } from '../constants/actionTypes';
 import toastr from 'toastr';
 import { logoutUser } from './auth.actions';
@@ -17,51 +20,72 @@ const API_URL = process.env.NODE_ENV === 'production'
   ? 'https://fcc-wubto-rest-api.herokuapp.com'
   : 'http://localhost:8050';
 
-export function setCurrentLocation(location) {
+function setCurrentLocation(location) {
   return {
     type: YELP_SET_CURRENT_LOCATION,
     payload: location
   };
 }
 
-export function setCurrentPosition(coords) {
+function setCurrentPosition(coords) {
   return {
     type: YELP_SET_CURRENT_POSITION,
     payload: coords
   };
 }
 
-export function setPlaces(places) {
+function setPlaces(places) {
   return {
     type: YELP_SET_PLACES,
     payload: places
   };
 }
 
-export function setSearchTerms(formData) {
+function setSearchTerms(formData) {
   return {
     type: YELP_SET_SEARCH_TERMS,
     payload: formData
   };
 }
 
-export function confirmRequest(id) {
+function confirmRequest(id) {
   return {
     type: YELP_CONFIRM_REQUEST,
     payload: id
   };
 }
 
-export function confirmSuccess(data) {
+function confirmSuccess(data) {
   return {
     type: YELP_CONFIRM_SUCCESS,
     payload: data
   };
 }
 
-export function confirmError(err) {
+function confirmError(err) {
   return {
     type: YELP_CONFIRM_ERROR,
+    payload: err
+  };
+}
+
+function placeRequest(id) {
+  return {
+    type: YELP_PLACE_REQUEST,
+    payload: id
+  };
+}
+
+function placeSuccess(data) {
+  return {
+    type: YELP_PLACE_SUCCESS,
+    payload: data
+  };
+}
+
+function placeError(err) {
+  return {
+    type: YELP_PLACE_ERROR,
     payload: err
   };
 }
@@ -166,6 +190,23 @@ export function toggleConfirmPlace(place, isConfirming) {
         dispatch(confirmSuccess(response.data));
       })
       .catch(err => {
+        errorHandler(err, dispatch, true);
+      });
+  };
+}
+
+export function getPlaceById(id) {
+  return dispatch => {
+    dispatch(placeRequest(id));
+    console.log('id:', id);
+    axios.get(`${API_URL}/yelp/place/${id}`)
+      .then(response => {
+        // TODO: Error checking
+        dispatch(placeSuccess(response.data));
+        console.log(response.data);
+      })
+      .catch(err => {
+        dispatch(placeError(err));
         errorHandler(err, dispatch, true);
       });
   };

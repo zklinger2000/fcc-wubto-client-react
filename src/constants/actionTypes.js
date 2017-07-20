@@ -10,3 +10,6 @@ export const YELP_SET_SEARCH_TERMS = 'yelp/SET_SEARCH_TERMS';
 export const YELP_CONFIRM_REQUEST = 'yelp/CONFIRM_REQUEST';
 export const YELP_CONFIRM_SUCCESS = 'yelp/CONFIRM_SUCCESS';
 export const YELP_CONFIRM_ERROR = 'yelp/CONFIRM_ERROR';
+export const YELP_PLACE_REQUEST = 'yelp/PLACE_REQUEST';
+export const YELP_PLACE_SUCCESS = 'yelp/PLACE_SUCCESS';
+export const YELP_PLACE_ERROR = 'yelp/PLACE_ERROR';

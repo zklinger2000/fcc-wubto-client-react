@@ -24,6 +24,7 @@ export default {
       longitude: undefined
     },
     places: [],
+    place: {},
     confirm: {
       isConfirming: false,
       id: ''
