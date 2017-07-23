@@ -38,6 +38,6 @@ dist
 # Mac files
 .DS_Store
 
-# App data
-config.js
+# Environment variables
+.env
 
