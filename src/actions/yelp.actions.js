@@ -153,7 +153,7 @@ export function searchDefault(current, search) {
 
 export function searchSubmit(formData) {
   return dispatch => {
-    formData.categories = formData.categories.split(',').map(c => c.trim()).toString();
+    formData.categories = formData.categories.split(',').map(c => c.trim()).toString().toLowerCase();
     // Add search terms to localStorage
     localStorage.setItem('search_terms', JSON.stringify(formData));
     // Dispatch action that adds search form data to current
@@ -182,7 +182,7 @@ export function toggleConfirmPlace(place, isConfirming) {
 
     dispatch(confirmRequest(place.id));
 
-    axios.post(`${API_URL}/yelp/confirm/${place.id}`, { place }, {
+    axios.post(`${API_URL}/yelp/confirm/${place.id}`, { place: { id: place.id, name: place.name, image_url: place.image_url } }, {
       headers: { authorization: userToken }
     })
       .then(response => {
