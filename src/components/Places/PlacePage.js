@@ -65,12 +65,12 @@ class PlacePage extends Component {
             <hr/>
             {user.friends && user.friends.length && user.friends.filter(friend => {
               return (friend.place.id === place.id) &&
-              (new Date(friend.place.expiresAt).toISOString() > new Date().toISOString());
+              (friend.place.expiresAt && new Date(friend.place.expiresAt).toISOString() > new Date().toISOString());
             }).map((friend, index) =>
               <p key={index}>{friend.facebook.displayName}</p>)}
             {!user.friends || user.friends.filter(friend => {
               return (friend.place.id === place.id) &&
-                (new Date(friend.place.expiresAt).toISOString() > new Date().toISOString());
+                (friend.place.expiresAt && new Date(friend.place.expiresAt).toISOString() > new Date().toISOString());
             }).length === 0 &&
               <p>No friends going yet...</p>
             }

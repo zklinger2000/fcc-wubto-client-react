@@ -35,10 +35,10 @@ class FriendsPage extends Component {
         <h2>Where your friends are going...</h2>
         <section className="friends-list">
           {user.friends && user.friends.filter(friend =>
-            (new Date(friend.place.expiresAt).toISOString() > new Date().toISOString())
+            (friend.place.expiresAt && new Date(friend.place.expiresAt).toISOString() > new Date().toISOString())
           ).length === 0 && <h1>None of your friends have any plans yet :-(</h1>}
         {user.friends && user.friends.filter(friend =>
-            (new Date(friend.place.expiresAt).toISOString() > new Date().toISOString())
+            (friend.place.expiresAt && new Date(friend.place.expiresAt).toISOString() > new Date().toISOString())
         ).map((friend, index) =>
           <article key={index}>
             <Link to={`/places/id/${friend.place.id}`}>

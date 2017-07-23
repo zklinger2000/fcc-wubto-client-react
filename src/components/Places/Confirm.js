@@ -25,7 +25,7 @@ const Confirm = (props) => {
       {authenticated && confirm && place &&
       !(confirm.isConfirming && confirm.id === place.id) &&
       (user.place && user.place.id === place.id) &&
-      (new Date(user.place.expiresAt).toISOString() > new Date().toISOString()) &&
+      (user.place.expiresAt && new Date(user.place.expiresAt).toISOString() > new Date().toISOString()) &&
       (
         <div className="btn btn-success" onClick={() => handleClick(place, confirm.isConfirming)}>
           <h4>Going</h4>
@@ -35,7 +35,7 @@ const Confirm = (props) => {
       {authenticated && confirm && place &&
       !(confirm.isConfirming && confirm.id === place.id) &&
       (user.place && user.place.id === place.id) &&
-      (new Date(user.place.expiresAt).toISOString() < new Date().toISOString()) &&
+      (user.place.expiresAt && new Date(user.place.expiresAt).toISOString() < new Date().toISOString()) &&
       (
         <div className="btn btn-danger" onClick={() => handleClick(place, confirm.isConfirming)}>
           <h4>Expired</h4>
@@ -51,12 +51,12 @@ const Confirm = (props) => {
       { authenticated &&
       user.friends && place && user.place &&
       !!user.friends.filter(friend => {
-        return (friend.place.id === place.id && (new Date(friend.place.expiresAt).toISOString() > new Date().toISOString()));
+        return (friend.place.id === place.id && (friend.place.expiresAt && new Date(friend.place.expiresAt).toISOString() > new Date().toISOString()));
       }).length &&
       (
         <div>
           <p className="alert-success">{user.friends && user.friends.filter(friend => {
-            return (friend.place.id === place.id && (new Date(friend.place.expiresAt).toISOString() > new Date().toISOString()));
+            return (friend.place.id === place.id && (friend.place.expiresAt && new Date(friend.place.expiresAt).toISOString() > new Date().toISOString()));
           }).length + (user.place.id === place.id ? 1 : 0)} Going</p>
         </div>
       )}
