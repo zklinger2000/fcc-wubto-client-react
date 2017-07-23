@@ -16,7 +16,7 @@ class Footer extends Component {
           {authenticated && pathname !== 'friends' && <Link to="/friends">Friends</Link>}
           {pathname !== 'about' && <Link to="/about">About</Link>}
         </section>
-        <h5>© Fancy Legal Stuff</h5>
+        <h5>Powered by Yelp and Facebook</h5>
       </footer>
     );
   }
