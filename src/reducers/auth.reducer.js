@@ -26,7 +26,7 @@ export default function(state = initialState.auth, action) {
     case YELP_CONFIRM_SUCCESS:
       return {
         ...state,
-        user: Object.assign({}, { friends: action.payload.friends }, { place: action.payload.place })
+        user: Object.assign({}, state.user, { friends: action.payload.friends }, { place: action.payload.place })
       };
     default:
       return state;

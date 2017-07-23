@@ -80,7 +80,8 @@ export default function(state = initialState.yelp, action) {
         place: {
           isLoading: false,
           id: undefined,
-          name: undefined
+          name: undefined,
+          image_url: undefined
         }
       };
     default:

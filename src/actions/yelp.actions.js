@@ -41,7 +41,7 @@ function setPlaces(places) {
   };
 }
 
-function setSearchTerms(formData) {
+export function setSearchTerms(formData) {
   return {
     type: YELP_SET_SEARCH_TERMS,
     payload: formData

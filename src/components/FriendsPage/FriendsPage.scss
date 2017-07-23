@@ -1,0 +1,122 @@
+@import '../../styles/variables';
+@import '../../styles/utilities';
+
+.friends-page {
+  @extend %page-setup;
+  text-align: center;
+  article {
+    width: 100%;
+    padding: 10px;
+    margin: 0 0 20px;
+    background-color: rgba($black, 0.2);
+    @include media-break(medium) {
+      max-width: 768px;
+      margin: 0 auto 20px;
+    }
+    a {
+      display: block;
+      color: $text-primary;
+    }
+    a {
+      display: inline-block;
+      vertical-align: top;
+      @include media-break(medium) {
+        width: 80%;
+      }
+    }
+    a:hover, a:focus, a:active {
+      color: $text-primary;
+      text-decoration: none;
+      background-color: rgba(black, 0.1);
+    }
+    a > div.image-wrapper {
+      width: 140px;
+      height: auto;
+      max-height: 140px;
+      overflow-y: hidden;
+      display: inline-block;
+      margin: 10px;
+      -webkit-box-shadow: 1px 1px 5px $box-shadow, -1px -1px 5px $box-shadow;
+      -moz-box-shadow: 1px 1px 5px $box-shadow, -1px -1px 5px $box-shadow;
+      box-shadow: 1px 1px 5px $box-shadow, -1px -1px 5px $box-shadow;
+      img {
+        height: auto;
+        width: 140px;
+        border: 2px solid rgba(black, 0.3);
+      }
+    }
+    a > div.image-wrapper.profile {
+      width: 100px;
+      max-height: 100px;
+      vertical-align: top;
+      img {
+        width: 100px;
+      }
+    }
+    a > .info {
+      color: $text-primary;
+      vertical-align: top;
+      margin: 10px;
+      @include media-break(medium) {
+        display: inline-block;
+        width: calc(100% - 300px);
+      }
+      h4 {
+        margin-top: 0;
+        font-size: em(20px);
+      }
+      label {
+        margin-right: 0.5em;
+        color: rgba($text-primary, 0.8);
+        text-transform: uppercase;
+      }
+      text {
+        color: rgba($text-primary, 0.7);
+      }
+      p:first-of-type:before {
+        content: " ";
+        border: 1px solid rgba($white, .1);
+        margin: 15px 0;
+        display: block;
+        //max-width: 90px;
+      }
+    }
+    section.confirmation {
+      width: 100%;
+      @include media-break(medium) {
+        //text-align: right;
+        display: inline-block;
+        width: 20%;
+      }
+      > div, > a > div {
+        color: $text-primary;
+        text-align: center;
+        width: 100px;
+        margin: 0 auto;
+        vertical-align: top;
+        line-height: 50px;
+        @include media-break(medium) {
+          margin-left: auto;
+        }
+        &:hover {
+          color: $white
+        }
+        h4 {
+          color: $white;
+        }
+        .fa {
+          font-size: em(40px);
+        }
+        .fa-cog {
+          color: $white;
+        }
+        .fa-check-circle-o {
+          color: $white;
+        }
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

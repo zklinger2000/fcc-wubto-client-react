@@ -37,7 +37,7 @@ class Login extends Component {
           <FacebookLogin
             appId="875935382564043"
             autoLoad={false}
-            fields="name, friends"
+            fields="name, friends, picture"
             scope="public_profile,user_friends"
             callback={this.handleFacebookLogin}
             icon="fa-facebook-official fa-2x"

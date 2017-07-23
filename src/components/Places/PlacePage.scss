@@ -10,13 +10,17 @@
     margin: 150px auto;
     padding: 25px 15px;
   }
+  h2 {
+    margin: 15px;
+    font-weight: 700;
+  }
   div.image-wrapper {
     width: 200px;
     height: auto;
     max-height: 200px;
     overflow-y: hidden;
-    display: inline-block;
-    margin: 10px;
+    margin: 10px 0 10px 15px;
+    vertical-align: top;
     -webkit-box-shadow:  1px 1px 5px $box-shadow, -1px -1px 5px $box-shadow;
     -moz-box-shadow:  1px 1px 5px $box-shadow, -1px -1px 5px $box-shadow;
     box-shadow:  1px 1px 5px $box-shadow, -1px -1px 5px $box-shadow;
@@ -25,5 +29,94 @@
       width: 200px;
       border: 2px solid rgba(black, 0.3);
     }
+  }
+  section.photos {
+    div.image-wrapper {
+      display: inline-block;
+    }
+  }
+  section.info {
+    display: inline-block;
+    width: calc(60% - 15px);
+    margin: 15px 0 15px 15px;
+  }
+  section.confirmation {
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;
+    width: calc(40% - 15px);
+    margin-top: 15px;
+    //@include media-break(medium) {
+    //  width: 20%;
+    //}
+    > div, > a > div {
+      color: $text-primary;
+      text-align: center;
+      width: 100px;
+      margin-left: auto;
+      vertical-align: top;
+      line-height: 50px;
+      &:hover {
+        color: $white
+      }
+      h4 {
+        color: $white;
+      }
+      .fa {
+        font-size: em(40px);
+      }
+      .fa-cog {
+        color: $white;
+      }
+      .fa-check-circle-o {
+        color: $white;
+      }
+    }
+  }
+  address {
+    margin: 15px;
+    p {
+      margin: 0;
+    }
+  }
+  section.google-map {
+    text-align: center;
+    margin: 15px auto;
+    @include media-break(medium) {
+      margin: 15px;
+    }
+  }
+  .underlay {
+    //background-color: red;
+    position: relative;
+    width: 320px;
+    height: 260px; /* your iframe height */
+    top: -6px;  /* your iframe height */
+    margin: -260px auto 0;  /* your iframe height */
+    z-index: -1;
+    //color: $text-primary;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 260px;
+    .fa {
+      font-size: em(60px);
+    }
+    .fa-cog {
+      color: $white;
+    }
+  }
+  .overlay {
+    background: transparent;
+    position: relative;
+    width: 320px;
+    height: 260px; /* your iframe height */
+    top: 260px;  /* your iframe height */
+    margin: -260px auto 0;  /* your iframe height */
+  }
+  .overlay.active {
+    pointer-events: none;
+  }
+  section.friends-going, section.photos {
+    margin: 15px;
   }
 }
