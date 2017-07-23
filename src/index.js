@@ -12,6 +12,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import * as authActions from './actions/auth.actions';
 import * as yelpActions from './actions/yelp.actions';
 import axios from 'axios';
+import 'autotrack';
 
 const store = configureStore();
 
