@@ -198,12 +198,10 @@ export function toggleConfirmPlace(place, isConfirming) {
 export function getPlaceById(id) {
   return dispatch => {
     dispatch(placeRequest(id));
-    console.log('id:', id);
     axios.get(`${API_URL}/yelp/place/${id}`)
       .then(response => {
         // TODO: Error checking
         dispatch(placeSuccess(response.data));
-        console.log(response.data);
       })
       .catch(err => {
         dispatch(placeError(err));
