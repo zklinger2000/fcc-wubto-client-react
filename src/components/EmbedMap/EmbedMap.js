@@ -39,8 +39,7 @@ class EmbedMap extends Component {
           width="320"
           height="260"
           frameBorder="0" style={{border:0}}
-          src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyA2y91bDTIXUkBxXfHWkQwuHZuGqz4ClY4
-              &q=${place.location && place.location.display_address && place.location.display_address.join(',')}`}
+          src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyA2y91bDTIXUkBxXfHWkQwuHZuGqz4ClY4&q=${place.location && place.location.display_address && place.location.display_address.join(',')}`}
           allowFullScreen
         />
         <div className="underlay">
